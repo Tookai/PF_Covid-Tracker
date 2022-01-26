@@ -11,10 +11,28 @@
   justify-content: space-between;
 }
 
+.box__title {
+  margin-bottom: 1rem;
+}
+
 .box__desc {
-  margin: 1rem 0;
+  height: 150px;
+  overflow: scroll;
+  
 }
 
 .box__number {
   font-size: 2.5rem;
+}
+
+.box__oldnumber {
+  font-size: 0.8rem;
+}
+
+.Augmente {
+  color: crimson;
+}
+
+.Diminue {
+  color: green;
 }

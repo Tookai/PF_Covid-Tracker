@@ -48,3 +48,8 @@ a:visited {
   text-decoration: none;
   color: inherit;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
