@@ -20,3 +20,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 500px) {
+  .navbar__title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .navbar__wrap {
+    width: 100%;
+  }
+}

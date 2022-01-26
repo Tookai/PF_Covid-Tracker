@@ -11,7 +11,6 @@ const Data = () => {
   const minus3 = today.getTime() - 1000 * 60 * 60 * 24 * 3;
   const minus4 = today.getTime() - 1000 * 60 * 60 * 24 * 4;
   const minus5 = today.getTime() - 1000 * 60 * 60 * 24 * 5;
-  const minus7 = today.getTime() - 1000 * 60 * 60 * 24 * 8;
   const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
   //
   //
@@ -20,8 +19,11 @@ const Data = () => {
     return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
   };
 
-  console.log(today);
-  console.log(getDateFormated(new Date(minus4)));
+  // Get Path
+  const path = window.location.pathname.replace("/", "");
+  const info = path === "" ? "/france-by-date" : window.location.pathname;
+
+  console.log(info);
 
   // Queries
   // Minus 1 Day Data
@@ -30,7 +32,7 @@ const Data = () => {
     isLoading,
     isError,
   } = useQuery("One Day", () =>
-    axios.get(`https://coronavirusapifr.herokuapp.com/data/france-by-date/${getDateFormated(new Date(minus1))}`).then((res) => res.data[0])
+    axios.get(`https://coronavirusapifr.herokuapp.com/data${info}/${getDateFormated(new Date(minus1))}`).then((res) => res.data[0])
   );
   // Minus 2 Day Data
   const {
@@ -38,7 +40,7 @@ const Data = () => {
     isLoading: twoL,
     isError: twoE,
   } = useQuery("Two Day", () =>
-    axios.get(`https://coronavirusapifr.herokuapp.com/data/france-by-date/${getDateFormated(new Date(minus2))}`).then((res) => res.data[0])
+    axios.get(`https://coronavirusapifr.herokuapp.com/data${info}/${getDateFormated(new Date(minus2))}`).then((res) => res.data[0])
   );
   // Minus 3 Day Data
   const {
@@ -46,7 +48,7 @@ const Data = () => {
     isLoading: threeL,
     isError: threeE,
   } = useQuery("Three Day", () =>
-    axios.get(`https://coronavirusapifr.herokuapp.com/data/france-by-date/${getDateFormated(new Date(minus3))}`).then((res) => res.data[0])
+    axios.get(`https://coronavirusapifr.herokuapp.com/data${info}/${getDateFormated(new Date(minus3))}`).then((res) => res.data[0])
   );
 
   // Minus 4 Day Data
@@ -55,7 +57,7 @@ const Data = () => {
     isLoading: fourL,
     isError: fourE,
   } = useQuery("Four Day", () =>
-    axios.get(`https://coronavirusapifr.herokuapp.com/data/france-by-date/${getDateFormated(new Date(minus4))}`).then((res) => res.data[0])
+    axios.get(`https://coronavirusapifr.herokuapp.com/data${info}/${getDateFormated(new Date(minus4))}`).then((res) => res.data[0])
   );
   // Minus 5 Day Data
   const {
@@ -63,21 +65,29 @@ const Data = () => {
     isLoading: fiveL,
     isError: fiveE,
   } = useQuery("Five Day", () =>
-    axios.get(`https://coronavirusapifr.herokuapp.com/data/france-by-date/${getDateFormated(new Date(minus5))}`).then((res) => res.data[0])
+    axios.get(`https://coronavirusapifr.herokuapp.com/data${info}/${getDateFormated(new Date(minus5))}`).then((res) => res.data[0])
   );
   //
   //
 
   // Format Percentage
   const numberToPercent = (number) => {
-    return (number * 100).toString().substring(0, 5) + "%";
+    if (number == null) {
+      return "x";
+    } else {
+      return (number * 100).toString().substring(0, 5) + "%";
+    }
   };
   //
   //
 
   // Format to 4 digits
   const numberSmaller = (number) => {
-    return number.toString().substring(0, 4);
+    if (number == null) {
+      return "x";
+    } else {
+      return number.toString().substring(0, 4);
+    }
   };
   //
   //
@@ -93,20 +103,19 @@ const Data = () => {
   //
   //
 
-  // Get Path
-  const path = window.location.pathname.replace("/", "");
-
-  if (isLoading || twoL || threeL || fiveL || fourL) {
+  if (isLoading || twoL || threeL || fourL || fiveL) {
     return <div>Is Loading</div>;
   }
 
-  if (isError || twoE || threeE || fiveE || fourE) {
+  if (isError || twoE || threeE || fourE || fiveE) {
     return <div>Is Error</div>;
   }
 
   return (
     <div className="data">
-      <h2> Données du : {getDateFormated(new Date(minus1))}</h2>
+      <h2>
+        Données du : <br /> {getDateFormated(new Date(minus1))}
+      </h2>
       {path === "" && <h3>Données niveau National</h3>}
       <div className="data__wrapper">
         <Box
