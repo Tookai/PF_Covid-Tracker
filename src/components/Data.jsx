@@ -21,6 +21,7 @@ const Data = () => {
   // Get Path
   const path = window.location.pathname.replace("/", "");
   const info = path === "" ? "/france-by-date" : window.location.pathname;
+  const region = window.location.pathname.replace("/departement/", "");
 
   // Queries
   // Minus 1 Day Data
@@ -113,7 +114,17 @@ const Data = () => {
       <h2>
         Données du : <br /> {getDateFormated(new Date(minus1))}
       </h2>
-      {path === "" && <h3>Données niveau National</h3>}
+      {path === "" ? (
+        <h3>
+          Données niveau <br />
+          National
+        </h3>
+      ) : (
+        <h3>
+          Données du département : <br />
+          {region}
+        </h3>
+      )}
       <div className="data__wrapper">
         <Box
           title="Nouveaux Cas J-1"
