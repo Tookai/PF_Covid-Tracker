@@ -11,7 +11,6 @@ const Data = () => {
   const minus3 = today.getTime() - 1000 * 60 * 60 * 24 * 3;
   const minus4 = today.getTime() - 1000 * 60 * 60 * 24 * 4;
   const minus5 = today.getTime() - 1000 * 60 * 60 * 24 * 5;
-  const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
   //
   //
 
@@ -22,8 +21,6 @@ const Data = () => {
   // Get Path
   const path = window.location.pathname.replace("/", "");
   const info = path === "" ? "/france-by-date" : window.location.pathname;
-
-  console.log(info);
 
   // Queries
   // Minus 1 Day Data

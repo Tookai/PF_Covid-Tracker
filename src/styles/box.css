@@ -11,6 +11,11 @@
   justify-content: space-between;
 }
 
+.x,
+.NaN {
+  display: none;
+}
+
 .box__title {
   margin-bottom: 1rem;
 }
@@ -18,7 +23,6 @@
 .box__desc {
   height: 150px;
   overflow: scroll;
-  
 }
 
 .box__number {
