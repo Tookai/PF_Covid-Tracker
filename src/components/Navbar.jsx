@@ -1,20 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "../styles/navbar.css";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [input, setInput] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [dep, setDep] = useState(false);
-
-  const inputEl = useRef(null);
-
-  const onButtonClick = () => {
-    // `current` points to the mounted text input element
-    inputEl.current.focus();
-  };
-
-  console.log(inputEl)
 
   let navigate = useNavigate();
 
@@ -31,9 +22,7 @@ const Navbar = () => {
       navigate(`/departement/${input}`);
       window.location.reload();
     }
-    // } else {
-    //   alert("Vous avez oublié de remplir le champ de recherche !");
-    // }
+
   };
 
   const handleOpen = (e) => {
@@ -73,7 +62,6 @@ const Navbar = () => {
                     className="navbar__input"
                     placeholder="seine-maritime"
                     onChange={(e) => setInput(e.target.value)}
-                    ref={inputEl}
                   />
                   <button className="navbar__btn" onClick={handleClick} type="submit">
                     OK
