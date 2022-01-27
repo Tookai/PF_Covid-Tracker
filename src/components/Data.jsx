@@ -70,6 +70,8 @@ const Data = () => {
   //
   //
 
+  console.log(oneDay);
+
   // Format Percentage
   const numberToPercent = (number) => {
     if (number == null) {
@@ -111,6 +113,30 @@ const Data = () => {
     return <div>Is Error</div>;
   }
 
+  if (oneDay === "N") {
+    return (
+      <div className="app__justify">
+        <p> Il semblerait qu'il y ait un petit soucis.</p>
+        <p>
+          Afin de réaliser une recherche par département, il vous faut taper le nom de ce département sans les accents, et en remplaçant les
+          espaces par des tirets.
+        </p>
+        <p>
+          Par exemple les départements :
+          <div className="app__centered">
+            <br /> Seine Maritime (76)
+            <br /> Hérault (34)
+          </div>
+          <br /> devraient être écrit de cette manière :
+          <div className="app__centered">
+            <br /> seine-maritime
+            <br /> herault
+          </div>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="data">
       <h2>
@@ -127,6 +153,7 @@ const Data = () => {
           {region}
         </h3>
       )}
+
       <div className="data__wrapper">
         <Box
           title="Nouveaux Cas J-1"
