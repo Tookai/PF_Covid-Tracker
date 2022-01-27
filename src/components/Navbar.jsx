@@ -13,9 +13,14 @@ const Navbar = () => {
     window.location.reload();
   };
 
-  const handleClick = () => {
-    navigate(`/departement/${input}`);
-    window.location.reload();
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (input !== "") {
+      navigate(`/departement/${input}`);
+      window.location.reload();
+    } else {
+      alert("Vous avez oublié de remplir le champ de recherche !");
+    }
   };
 
   const handleOpen = (e) => {
