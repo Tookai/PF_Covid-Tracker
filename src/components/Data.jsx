@@ -24,8 +24,6 @@ const Data = () => {
   const info = path === "" ? "/france-by-date" : window.location.pathname;
   const region = window.location.pathname.replace("/departement/", "");
 
-  console.log(info, "info");
-
   // Queries
   // Minus 1 Day Data
   const {
@@ -70,8 +68,6 @@ const Data = () => {
   );
   //
   //
-
-  console.log(oneDay);
 
   // Format Percentage
   const numberToPercent = (number) => {

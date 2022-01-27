@@ -24,7 +24,7 @@
 }
 
 .navbar__input {
-  width: 50%;
+  min-width: 250px;
   background-color: grey;
   border: none;
   outline: none;
@@ -74,6 +74,16 @@
   transition: 300ms;
 }
 
+.navbar__clickable {
+  cursor: pointer;
+}
+
+.navbar__clickable:hover {
+  text-decoration: underline;
+  color: white;
+  transition: 300ms;
+}
+
 @media screen and (max-width: 500px) {
   .navbar__title {
     width: 100%;
@@ -106,13 +116,13 @@
 
   .navbar__input {
     width: 100%;
-    margin: 0;
+    margin: 0.5rem;
     border-radius: 0.3rem;
     text-align: center;
   }
 
   .navbar__btn {
-    margin: 0.2rem;
+    margin: 0.5rem;
     border-radius: 0.3rem;
     width: 50%;
   }

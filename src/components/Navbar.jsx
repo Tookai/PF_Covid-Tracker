@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/navbar.css";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [input, setInput] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const [dep, setDep] = useState(false);
+
+  const inputEl = useRef(null);
+
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+
+  console.log(inputEl)
 
   let navigate = useNavigate();
 
@@ -15,17 +25,25 @@ const Navbar = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    setDep(!dep);
+    
     if (input !== "") {
       navigate(`/departement/${input}`);
       window.location.reload();
-    } else {
-      alert("Vous avez oublié de remplir le champ de recherche !");
     }
+    // } else {
+    //   alert("Vous avez oublié de remplir le champ de recherche !");
+    // }
   };
 
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(!open);
+  };
+
+  const handleDep = (e) => {
+    e.preventDefault();
+    setDep(!dep);
   };
 
   return (
@@ -38,20 +56,31 @@ const Navbar = () => {
         {open && (
           <>
             <div className="navbar__left">
-              <h4 onClick={handleNational}>National</h4>
+              <h4 onClick={handleNational} className="navbar__clickable">
+                National
+              </h4>
             </div>
-            <div className="navbar__right">
-              <h4>Département</h4>
-              <input
-                type="text"
-                className="navbar__input"
-                placeholder="par ex : seine-maritime"
-                onChange={(e) => setInput(e.target.value)}
-              />
-              <button className="navbar__btn" onClick={handleClick}>
-                OK
-              </button>
-            </div>
+            <form className="navbar__right">
+              {!dep ? (
+                <h4 className="navbar__clickable" onClick={handleDep}>
+                  Département
+                </h4>
+              ) : (
+                <>
+                  <input
+                    autoFocus
+                    type="text"
+                    className="navbar__input"
+                    placeholder="seine-maritime"
+                    onChange={(e) => setInput(e.target.value)}
+                    ref={inputEl}
+                  />
+                  <button className="navbar__btn" onClick={handleClick} type="submit">
+                    OK
+                  </button>
+                </>
+              )}
+            </form>
           </>
         )}
       </div>
