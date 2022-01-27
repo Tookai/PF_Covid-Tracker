@@ -11,23 +11,14 @@
   background-color: rgb(60, 60, 60);
 }
 
-.navbar__title {
-  width: 50%;
-}
-
 .navbar__wrap {
-  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navbar__left {
-  width: 30%;
-}
-
 .navbar__right {
-  width: 70%;
+  margin: 0 1rem;
   display: flex;
   align-items: center;
 }
