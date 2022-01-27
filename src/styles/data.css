@@ -7,3 +7,19 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.data__justify {
+  text-align: justify;
+}
+
+.data__justify p {
+  margin-bottom: 1rem;
+}
+
+.data__centered {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

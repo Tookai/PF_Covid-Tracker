@@ -1,21 +1,18 @@
 .App {
   width: 80%;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 1rem;
-  height: calc(100vh - 171px);
-}
-
-.app__justify {
-  text-align: justify;
-}
-
-.app__centered {
-  text-align: center;
+  min-height: calc(100vh - 171px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 500px) {
   .App {
     width: 100%;
-    height: calc(100vh - 138px - 71px);
+    min-height: calc(100vh - 138px - 71px);
   }
 }

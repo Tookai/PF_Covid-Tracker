@@ -2,6 +2,7 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import "../styles/data.css";
 import Box from "./Box";
+import { Watch } from "react-loader-spinner";
 
 const Data = () => {
   // Date Minus 1 Day
@@ -106,29 +107,42 @@ const Data = () => {
   //
 
   if (isLoading || twoL || threeL || fourL || fiveL) {
-    return <div>Is Loading</div>;
+    return (
+      <div className="data__centered">
+        <Watch heigth="100" width="100" color="lightgrey" ariaLabel="loading" />
+      </div>
+    );
   }
 
   if (isError || twoE || threeE || fourE || fiveE) {
-    return <div>Is Error</div>;
+    return (
+      <div className="data__justify">
+        <p>Oulah ! On dirait qu'il y a une erreur avec notre base de données.</p>
+        <p>
+          Nos meilleurs ingénieurs sont sur le coup, ainsi que ceux de la NASA, du MIT et de Harvard. Avec tout ce beau monde ça ne devrait
+          pas durer longtemps.
+        </p>
+        <p>Réessayez un peu plus tard et tout devrait être revenu dans l'ordre !</p>
+      </div>
+    );
   }
 
   if (oneDay === "N") {
     return (
-      <div className="app__justify">
+      <div className="data__justify">
         <p> Il semblerait qu'il y ait un petit soucis.</p>
         <p>
-          Afin de réaliser une recherche par département, il vous faut taper le nom de ce département sans les accents, et en remplaçant les
+          Afin de réaliser une recherche par département, il vous faut taper le nom de ce département sans les accents et en remplaçant les
           espaces par des tirets.
         </p>
         <p>
           Par exemple les départements :
-          <div className="app__centered">
+          <div className="data__centered">
             <br /> Seine Maritime (76)
             <br /> Hérault (34)
           </div>
           <br /> devraient être écrit de cette manière :
-          <div className="app__centered">
+          <div className="data__centered">
             <br /> seine-maritime
             <br /> herault
           </div>

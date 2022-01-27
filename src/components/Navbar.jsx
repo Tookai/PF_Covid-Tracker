@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [input, setInput] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   let navigate = useNavigate();
 
